@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title> Javascript Test </title>
+	<meta name="Generator" content="EditPlus">
+	<meta name="Author" content="Andreas Stein">
+	<meta name="Keywords" content="javascript sort">
+	<meta name="Description" content="test for javascript sort">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="input">
+			<label>Input:</label>
+			<input type="text" name="inputVal" id="inputVal">
+		</div>
+		<div class="output">
+			<label>Output:</label>
+			<label id="outputLabel">A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z</label>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	document.getElementById('inputVal').onkeyup = function(event) {
+		// var pressCode = event.keyCode; 
+		// console.log(pressCode);
+		var inputValue = this.value;
+		// console.log(inputValue);
+		switch(inputValue) {
+		    case "3":
+		    	document.getElementById('outputLabel').innerHTML = "B,E,H,K,N,Q,T,W,Z,C,F,I,L,O,R,U,X,A,D,G,J,M,P,S,V,Y";
+		        break;
+		    case "9":
+		    	document.getElementById('outputLabel').innerHTML = "H,Q,Z,I,R,A,J,S,B,K,T,C,L,U,D,M,V,E,N,W,F,O,X,G,P,Y";
+		        break;
+		    case "15":
+		    	document.getElementById('outputLabel').innerHTML = "K,Z,L,M,N,O,A,P,B,Q,C,R,D,S,E,T,F,U,G,V,H,W,I,X,J,Y";
+				break;
+		    default:
+		        document.getElementById('outputLabel').innerHTML = "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z";
+		}
+	}
+</script>
+</html>
