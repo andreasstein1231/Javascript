@@ -21,25 +21,57 @@
 		</div>
 	</div>
 </body>
+
 <script type="text/javascript">
-	document.getElementById('inputVal').onkeyup = function(event) {
-		// var pressCode = event.keyCode; 
-		// console.log(pressCode);
-		var inputValue = this.value;
-		// console.log(inputValue);
-		switch(inputValue) {
-		    case "3":
-		    	document.getElementById('outputLabel').innerHTML = "B,E,H,K,N,Q,T,W,Z,C,F,I,L,O,R,U,X,A,D,G,J,M,P,S,V,Y";
-		        break;
-		    case "9":
-		    	document.getElementById('outputLabel').innerHTML = "H,Q,Z,I,R,A,J,S,B,K,T,C,L,U,D,M,V,E,N,W,F,O,X,G,P,Y";
-		        break;
-		    case "15":
-		    	document.getElementById('outputLabel').innerHTML = "K,Z,L,M,N,O,A,P,B,Q,C,R,D,S,E,T,F,U,G,V,H,W,I,X,J,Y";
-				break;
-		    default:
-		        document.getElementById('outputLabel').innerHTML = "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z";
+	
+	var letters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+	
+	function printLabel(outputArray){
+
+		var outputLabel = "";
+		for (i=0;i<26;i++){
+			outputLabel += outputArray[i];
+			if (i != 25){
+				outputLabel += ",";
+			}
+		}
+		document.getElementById('outputLabel').innerHTML = outputLabel;
+	}
+
+	function runSortAlgorithm(inputValue) {
+
+		var curVal = 0;
+		if (inputValue.match(/^\d+$/)){
+			// console.log("number");
+			curVal = parseInt(inputValue);
+			if ( curVal != 0 ) {
+				// curVal ==3   =>  "B,E,H,K,N,Q,T,W,Z,C,F,I,L,O,R,U,X,A,D,G,J,M,P,S,V,Y"
+				// curVal ==9   =>  "H,Q,Z,I,R,A,J,S,B,K,T,C,L,U,D,M,V,E,N,W,F,O,X,G,P,Y"
+				// curVal ==15  =>  "K,Z,L,M,N,O,A,P,B,Q,C,R,D,S,E,T,F,U,G,V,H,W,I,X,J,Y"  // Not correct
+				var outputLetters = [];
+				for (i=0;i<26;i++){
+					var curPos = 0;
+					curPos = (i+1)*curVal -2;
+					if (curPos < 0 ) { curPos += 26; }
+					if (curPos > 25) { curPos = curPos % 26; }
+					outputLetters[i] = letters[curPos];
+				}
+				printLabel(outputLetters);
+
+			}else{
+				printLabel(letters);
+			}
+		}else{
+			// console.log("not number");
+			printLabel(letters);
 		}
 	}
+
+	document.getElementById('inputVal').onkeyup = function(event) {
+		// var pressCode = event.keyCode; 
+		var inputValue = this.value;
+		runSortAlgorithm(inputValue);
+	}
+
 </script>
 </html>
